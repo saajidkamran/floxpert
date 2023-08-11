@@ -38,7 +38,6 @@ export const MainPage = () => {
         <ViewCard />
         <ViewCard />
         <ViewCard />
-        <ViewCard />
       </div>
       <About />
     </div>
