@@ -26,10 +26,9 @@ export const Intro = () => {
           opacity: "0.8",
           width: "700px",
           maxWidth: "100%",
-          //   border: "1px solid yellow",
           transition: "width 2s",
           maxHeight: "100%",
-          margin: "200px auto",
+          margin: "300px auto",
           textAlign: "center",
           paddingBottom: "50px",
         }}
