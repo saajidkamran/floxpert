@@ -49,10 +49,10 @@ export const Header = () => {
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", top: 0, zIndex: 40, position: "sticky" }}>
       <CssBaseline />
       <AppBar
-        sx={{ boxShadow: "none", backgroundColor: "#4caf50" }}
+        sx={{ boxShadow: "none", backgroundColor: "#272829" }}
         component="nav"
       >
         <Toolbar>
@@ -80,7 +80,7 @@ export const Header = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ fontSize: 20, mr: 5, color: "#fff" }}>
+              <Button key={item} sx={{ fontSize: 16, mr: 5, color: "#fff" }}>
                 {item}
               </Button>
             ))}
@@ -100,7 +100,7 @@ export const Header = () => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              backgroundColor: "#388e3c",
+              backgroundColor: "#01579b",
             },
           }}
         >
