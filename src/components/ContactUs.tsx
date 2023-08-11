@@ -22,7 +22,12 @@ const ContactUs = () => {
           width: "100%",
         }}
       >
-        <Typography mt={2} fontFamily={"fantasy"} fontSize={50}>
+        <Typography
+          mt={2}
+          sx={{ cursor: "none" }}
+          fontFamily={"fantasy"}
+          fontSize={50}
+        >
           Contact Us
         </Typography>
         <div
@@ -48,6 +53,7 @@ const ContactUs = () => {
             flexDirection: "row",
             justifyContent: "space-evenly",
             marginTop: "15px",
+            cursor: "pointer" 
           }}
         >
           <InstagramIcon

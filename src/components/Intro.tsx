@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import image from "../images/wallpaperflare.com_wallpaper.jpg";
+import "./Intro.css";
 
 export const Intro = () => {
   return (
@@ -23,9 +24,10 @@ export const Intro = () => {
           flexWrap: "wrap",
           backgroundColor: "black",
           opacity: "0.8",
-          width: "50%",
+          width: "700px",
           maxWidth: "100%",
           //   border: "1px solid yellow",
+          transition: "width 2s",
           maxHeight: "100%",
           margin: "200px auto",
           textAlign: "center",
@@ -34,8 +36,7 @@ export const Intro = () => {
       >
         <div
           style={{
-            // margin: " 0 auto 10%",
-
+            animation: "moveup 2s 1 normal forwards",
             border: "19px solid yellow",
             height: "100px",
             width: "0",
@@ -48,6 +49,7 @@ export const Intro = () => {
             color: "white",
             fontWeight: "bold",
             fontFamily: "Georgia, 'Times New Roman', Times, serif",
+            animation: "moveleft 2s 1 normal forwards",
           }}
           variant="h3"
           paddingTop="40px "
@@ -64,6 +66,7 @@ export const Intro = () => {
           height="auto"
           sx={{
             textAlign: "center",
+            animation: "moveleft 2s 1 normal forwards",
             // border: "1px solid yellow",
             margin: " 30px auto 0",
             fontSize: "20px",

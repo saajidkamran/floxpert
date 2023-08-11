@@ -38,7 +38,10 @@ export const ViewCard = () => {
   };
 
   return (
-    <Card sx={{ margin: "30px 20px ", maxWidth: 345 }}>
+    <Card sx={{ margin: "30px 20px ", maxWidth: 345,   transition: " 1.1s",
+    "&:hover": {
+      transform: "scale(1.09)"
+    } }}>
       <CardMedia
         component="img"
         height="194"

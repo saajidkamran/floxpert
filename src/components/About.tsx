@@ -31,9 +31,10 @@ const About = () => {
         style={{
           border: "4px solid #FFF3DA",
           color: "#FFF3DA",
-          width: "100%",
+          width: "1500px",
           height: "60%",
           maxHeight: "100%",
+          maxWidth: "100%",
           marginTop: "-100px",
           marginLeft: "auto",
           marginRight: "auto",
