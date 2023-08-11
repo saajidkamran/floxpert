@@ -4,19 +4,11 @@ import { Intro } from "../components/Intro";
 import { ViewCard } from "../components/ViewCard";
 import { Directions } from "@mui/icons-material";
 import About from "../components/About";
+import ContactUs from "../components/ContactUs";
 
 export const MainPage = () => {
   return (
-    <div
-    //   style={{
-    //     display: "flex",
-    //     flexDirection: "column",
-    //     maxWidth: "100%",
-    //     maxHeight: "100%",
-
-    //     // justifyContent: "",
-    //   }}
-    >
+    <div>
       <Intro />
       <div
         style={{
@@ -40,6 +32,7 @@ export const MainPage = () => {
         <ViewCard />
       </div>
       <About />
+      <ContactUs />
     </div>
   );
 };
