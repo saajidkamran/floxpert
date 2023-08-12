@@ -4,6 +4,7 @@ import React from "react";
 const About = () => {
   return (
     <div
+      id="about"
       style={{
         backgroundColor: "black",
         width: "100%",

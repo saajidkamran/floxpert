@@ -3,50 +3,22 @@ import {
   Box,
   Button,
   CssBaseline,
-  Divider,
   Drawer,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
   Toolbar,
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-
+import { Link } from "react-scroll";
 import React from "react";
-
-const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
 
 export const Header = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  const drawerWidth = 240;
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-  const drawer = (
-    <Box
-      onClick={handleDrawerToggle}
-      color="whitesmoke"
-      sx={{ textAlign: "center" }}
-    >
-      <Typography variant="h5" sx={{ my: 2 }}>
-        Floxpert
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
 
   return (
     <Box sx={{ display: "flex", top: 0, zIndex: 40, position: "sticky" }}>
@@ -79,11 +51,41 @@ export const Header = () => {
             Floxpert
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ fontSize: 16, mr: 5, color: "#fff" }}>
-                {item}
+            <Link
+              activeClass="active"
+              to="main"
+              spy={true}
+              smooth={true}
+              offset={-180}
+              duration={700}
+              style={{ fontSize: 16, marginRight: 5, color: "#fff" }}
+            >
+              <Button sx={{ fontSize: 16, mr: 5, color: "#fff" }}>Home</Button>
+            </Link>
+            <Link
+              activeClass="active"
+              to="about"
+              spy={true}
+              smooth={true}
+              offset={-180}
+              duration={700}
+              style={{ fontSize: 16, marginRight: 5, color: "#fff" }}
+            >
+              <Button sx={{ fontSize: 16, mr: 5, color: "#fff" }}>about</Button>
+            </Link>
+            <Link
+              activeClass="active"
+              to="contact"
+              spy={true}
+              smooth={true}
+              offset={-200}
+              duration={700}
+              style={{ fontSize: 16, marginRight: 5, color: "#fff" }}
+            >
+              <Button sx={{ fontSize: 16, mr: 5, color: "#fff" }}>
+                Contact
               </Button>
-            ))}
+            </Link>
           </Box>
         </Toolbar>
       </AppBar>
@@ -104,7 +106,39 @@ export const Header = () => {
             },
           }}
         >
-          {drawer}
+          <Link
+            activeClass="active"
+            to="main"
+            spy={true}
+            smooth={true}
+            offset={-180}
+            duration={700}
+            style={{ fontSize: 16, marginRight: 5, color: "#fff" }}
+          >
+            <Button sx={{ fontSize: 16, mr: 5, color: "#fff" }}>Home</Button>
+          </Link>
+          <Link
+            activeClass="active"
+            to="about"
+            spy={true}
+            smooth={true}
+            offset={-180}
+            duration={700}
+            style={{ fontSize: 16, marginRight: 5, color: "#fff" }}
+          >
+            <Button sx={{ fontSize: 16, mr: 5, color: "#fff" }}>about</Button>
+          </Link>
+          <Link
+            activeClass="active"
+            to="contact"
+            spy={true}
+            smooth={true}
+            offset={-200}
+            duration={700}
+            style={{ fontSize: 16, marginRight: 5, color: "#fff" }}
+          >
+            <Button sx={{ fontSize: 16, mr: 5, color: "#fff" }}>Contact</Button>
+          </Link>{" "}
         </Drawer>
       </Box>
     </Box>

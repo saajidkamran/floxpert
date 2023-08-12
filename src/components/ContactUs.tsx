@@ -7,6 +7,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 const ContactUs = () => {
   return (
     <div
+      id="contact"
       style={{
         width: "100%",
         height: "200px",
@@ -53,7 +54,7 @@ const ContactUs = () => {
             flexDirection: "row",
             justifyContent: "space-evenly",
             marginTop: "15px",
-            cursor: "pointer" 
+            cursor: "pointer",
           }}
         >
           <InstagramIcon

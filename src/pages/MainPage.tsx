@@ -1,20 +1,14 @@
-import { Typography } from "@mui/material";
 import React from "react";
 import { Intro } from "../components/Intro";
 import { ViewCard } from "../components/ViewCard";
-import { Directions } from "@mui/icons-material";
-import About from "../components/About";
-import ContactUs from "../components/ContactUs";
 
 export const MainPage = () => {
   return (
-    <div>
+    <div id="main">
       <Intro />
       <div
         style={{
           display: "flex",
-          //   alignContent:"center",
-          //   flexGrow: 1,
           justifyContent: "space-evenly",
           flexDirection: "row",
           maxWidth: "1500px",
@@ -31,8 +25,6 @@ export const MainPage = () => {
         <ViewCard />
         <ViewCard />
       </div>
-      <About />
-      <ContactUs />
     </div>
   );
 };
