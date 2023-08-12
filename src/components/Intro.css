@@ -14,14 +14,37 @@
     transform: translateY(0);
   }
 }
-.square {
-  width: 200px;
-  height: 200px;
-  background: orange;
+
+@keyframes moveleftAbout {
+  from {
+    transform: translateX(15%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes moveupAbout {
+  from {
+    transform: translateY(15%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .square-animation {
-    animation: wipe-enter 1s 1;
+@keyframes moveCircleLeft {
+  from {
+    transform: translateX(85%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes moveCircleRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(85%);
   }
 }

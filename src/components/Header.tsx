@@ -102,7 +102,8 @@ export const Header = () => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              backgroundColor: "#01579b",
+              background:
+                "linear-gradient(to bottom, #232526, #414345)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
             },
           }}
         >

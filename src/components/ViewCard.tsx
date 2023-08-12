@@ -174,6 +174,8 @@ export const ViewCard = () => {
             flexDirection: "row",
             justifyContent: "space-between",
             height: "50px",
+            marginLeft: "auto",
+            marginRight: "auto",
           }}
         >
           <IconButton aria-label="add to favorites">
