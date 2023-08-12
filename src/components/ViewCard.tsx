@@ -145,7 +145,8 @@ export const ViewCard = () => {
           View More
         </Button>
       </CardActions>
-
+      
+      {/* This DIalog Box view  */}
       <BootstrapDialog onClose={handleClose} open={open}>
         <ImageList
           sx={{ maxWidth: "100%", width: "600px", height: 450 }}
