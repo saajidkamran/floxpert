@@ -13,6 +13,7 @@ const About = () => {
         marginBottom: "100px",
         marginTop: "100px",
         padding: "20px 20px 50px 20px ",
+        cursor: "default",
       }}
     >
       <Avatar

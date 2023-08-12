@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import React from "react";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -57,15 +57,54 @@ const ContactUs = () => {
             cursor: "pointer",
           }}
         >
-          <InstagramIcon
-            sx={{ margin: "10px", width: "50px", height: "50px" }}
-          />
-          <WhatsAppIcon
-            sx={{ width: "50px", margin: "10px", height: "50px" }}
-          />
-          <FacebookIcon
-            sx={{ width: "50px", height: "50px", margin: "10px" }}
-          />
+          <IconButton
+            sx={{ color: "white" }}
+            href="#"
+          >
+            <InstagramIcon
+              sx={{
+                margin: "10px",
+                width: "50px",
+                height: "50px",
+                "&:hover": {
+                  transform: "scale(1.09)",
+                },
+              }}
+            />
+          </IconButton>
+
+          <IconButton
+            sx={{ color: "white" }}
+            href="#"
+          >
+            <WhatsAppIcon
+              onClick={() => "https://www.loom.com/looms/videos"}
+              sx={{
+                width: "50px",
+                margin: "10px",
+                height: "50px",
+                "&:hover": {
+                  transform: "scale(1.09)",
+                },
+              }}
+            />
+          </IconButton>
+
+          <IconButton
+            sx={{ color: "white" }}
+            href="#"
+          >
+            <FacebookIcon
+              sx={{
+                width: "50px",
+                height: "50px",
+                margin: "10px",
+                "&:hover": {
+                  transform: "scale(1.09)",
+                },
+              }}
+            />
+          </IconButton>
         </div>
       </div>
     </div>

@@ -103,7 +103,11 @@ export const ViewCard = () => {
         alt="Paella dish"
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          sx={{ cursor: "default" }}
+          variant="body2"
+          color="text.secondary"
+        >
           This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the
           mussels, if you like.
@@ -145,7 +149,7 @@ export const ViewCard = () => {
           View More
         </Button>
       </CardActions>
-      
+
       {/* This DIalog Box view  */}
       <BootstrapDialog onClose={handleClose} open={open}>
         <ImageList
@@ -186,7 +190,7 @@ export const ViewCard = () => {
           </IconButton>
         </Box>
         <DialogContent dividers>
-          <Typography gutterBottom>
+          <Typography sx={{ cursor: "default" }} gutterBottom>
             Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
             dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
             ac consectetur ac, vestibulum at eros.

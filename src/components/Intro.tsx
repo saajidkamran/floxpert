@@ -15,6 +15,7 @@ export const Intro = () => {
         height: "900px",
         backgroundSize: "cover",
         overflow: "hidden",
+        cursor: "default",
       }}
     >
       <Box
