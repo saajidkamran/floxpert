@@ -44,3 +44,25 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyA61GCNP9uwrmT65_HL9132ACdsICF3Jp4",
+  authDomain: "floxpert-backend.firebaseapp.com",
+  projectId: "floxpert-backend",
+  storageBucket: "floxpert-backend.appspot.com",
+  messagingSenderId: "820945935787",
+  appId: "1:820945935787:web:eea72ddcc1480623d946ee",
+  measurementId: "G-JRYNH0XWX4"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
