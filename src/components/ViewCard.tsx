@@ -17,65 +17,15 @@ import PlaceIcon from "@mui/icons-material/Place";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   // margin: "auto",
 }));
-const itemData = [
-  {
-    img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
-    title: "Breakfast",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d",
-    title: "Burger",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1522770179533-24471fcdba45",
-    title: "Camera",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c",
-    title: "Coffee",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1533827432537-70133748f5c8",
-    title: "Hats",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62",
-    title: "Honey",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1516802273409-68526ee1bdd6",
-    title: "Basketball",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
-    title: "Fern",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1597645587822-e99fa5d45d25",
-    title: "Mushrooms",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1567306301408-9b74779a11af",
-    title: "Tomato basil",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1471357674240-e1a485acb3e1",
-    title: "Sea star",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
-    title: "Bike",
-  },
-];
 export interface DialogTitleProps {
   id: string;
   children?: React.ReactNode;
   onClose: () => void;
 }
 
-export const ViewCard = () => {
+export const ViewCard = (products: any) => {
   const [open, setOpen] = React.useState(false);
-
+  const image = products.products.image[0].replace("uploads", "");
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -99,7 +49,8 @@ export const ViewCard = () => {
       <CardMedia
         component="img"
         height="194"
-        image="https://exej2saedb8.exactdn.com/wp-content/uploads/2022/02/Screen-Shot-2022-02-04-at-2.28.40-PM.png?strip=all&lossy=1&ssl=1"
+        // image="https://exej2saedb8.exactdn.com/wp-content/uploads/2022/02/Screen-Shot-2022-02-04-at-2.28.40-PM.png?strip=all&lossy=1&ssl=1"
+        image={`https://floxpert-service.onrender.com/${image}`}
         alt="Paella dish"
       />
       <CardContent>
@@ -108,9 +59,7 @@ export const ViewCard = () => {
           variant="body2"
           color="text.secondary"
         >
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {products.products.name}
         </Typography>
       </CardContent>
       <CardActions
@@ -124,11 +73,11 @@ export const ViewCard = () => {
       >
         <IconButton aria-label="add to favorites">
           <LocalHotelIcon />
-          <Typography m={2}>3</Typography>
+          <Typography m={2}> {products.products.bedroomCount} </Typography>
         </IconButton>
         <IconButton aria-label="share">
           <LocalOfferIcon />
-          <Typography ml={1}> Rs.30000</Typography>
+          <Typography ml={1}> Rs. {products.products.price}</Typography>
         </IconButton>
         <IconButton aria-label="share">
           <PlaceIcon />
@@ -157,12 +106,17 @@ export const ViewCard = () => {
           cols={2}
           rowHeight={164}
         >
-          {itemData.map((item) => (
-            <ImageListItem key={item.img}>
+          {products.products.image.map((item: any) => (
+            <ImageListItem key={item}>
               <img
-                src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.title}
+                src={`https://floxpert-service.onrender.com/${item.replace(
+                  "uploads",
+                  ""
+                )}?w=164&h=164&fit=crop&auto=format`}
+                srcSet={`https://floxpert-service.onrender.com/${item.replace(
+                  "uploads",
+                  ""
+                )}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                 loading="lazy"
               />
             </ImageListItem>
@@ -180,7 +134,7 @@ export const ViewCard = () => {
         >
           <IconButton aria-label="add to favorites">
             <LocalHotelIcon />
-            <Typography m={2}>3</Typography>
+            <Typography m={2}>{products.products.bedroomCount}</Typography>
           </IconButton>
           <IconButton aria-label="share">
             <PlaceIcon />
@@ -188,14 +142,12 @@ export const ViewCard = () => {
           </IconButton>
           <IconButton aria-label="share">
             <LocalOfferIcon />
-            <Typography ml={1}> Rs.30000</Typography>
+            <Typography ml={1}> Rs. {products.products.price}</Typography>
           </IconButton>
         </Box>
         <DialogContent dividers>
-          <Typography sx={{ cursor: "default" }} gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
+          <Typography sx={{ cursor: "default", maxWidth: "auto" }} gutterBottom>
+            {products.products.description}
           </Typography>
         </DialogContent>
         <DialogActions>

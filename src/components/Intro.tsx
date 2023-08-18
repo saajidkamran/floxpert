@@ -5,12 +5,10 @@ import "./Intro.css";
 
 export const Intro = () => {
   const myref: any = useRef();
-  const [elmentVisible, setElmentVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      setElmentVisible(entry.isIntersecting);
     });
     observer.observe(myref.current);
   }, []);
