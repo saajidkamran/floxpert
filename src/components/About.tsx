@@ -1,5 +1,6 @@
 import { Avatar, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
+import avatarPic from "../images/avatar.jpg";
 import "./Intro.css";
 
 const About = () => {
@@ -39,7 +40,7 @@ const About = () => {
         }}
         imgProps={{ style: { borderRadius: "50%", border: "6px solid white" } }}
         className="avatar"
-        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+        src={avatarPic}
       />
       <div
         style={{
