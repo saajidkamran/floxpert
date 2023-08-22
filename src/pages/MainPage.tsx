@@ -2,14 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Intro } from "../components/Intro";
 import { ViewCard } from "../components/ViewCard";
 import url from "../api/baseurl";
-// import axios from "axios";
-interface cards {
-  name?: string;
-  bedroomCount?: number;
-  description?: string;
-  image?: any[];
-  price?: number;
-}
+import ContactUs from "../components/ContactUs";
+import About from "../components/About";
+
 export const MainPage = () => {
   const [products, setProducts] = useState([]);
 
@@ -44,12 +39,9 @@ export const MainPage = () => {
         {products?.map((prod: any) => {
           return <ViewCard products={prod} />;
         })}
-        {/* <ViewCard />
-        <ViewCard />
-        <ViewCard />
-        <ViewCard />
-        <ViewCard /> */}
       </div>
+      <About />
+      <ContactUs />
     </div>
   );
 };

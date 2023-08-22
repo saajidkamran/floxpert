@@ -3,7 +3,7 @@ import axios from "axios";
 /** base url to make request to the themoviedatabase */
 
 const instance = axios.create({
-  baseURL: "https://floxpert-service.onrender.com",
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
 
 // instance.get('/foo-bar');

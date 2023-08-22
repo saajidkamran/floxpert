@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -14,7 +14,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import { Box, ImageList, ImageListItem } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
-import TurnedInSharpIcon from "@mui/icons-material/TurnedInSharp";
+import url from "../api/baseurl";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   // margin: "auto",
@@ -28,12 +28,18 @@ export interface DialogTitleProps {
 export const ViewCard = (products: any) => {
   const [open, setOpen] = React.useState(false);
   const productDetails = products.products;
-  const image = productDetails.image[0].replace("uploads", "");
+  const image = productDetails.image[0]?.replace("uploads", "");
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+  const confirmClose = async () => {
+    console.log("result>>", productDetails._id);
+    try {
+      const request = await url.delete(`/products/${productDetails._id}`);
+    } catch (error) {}
   };
 
   return (
@@ -52,6 +58,7 @@ export const ViewCard = (products: any) => {
       <CardMedia
         component="img"
         height="194"
+        // image="https://exej2saedb8.exactdn.com/wp-content/uploads/2022/02/Screen-Shot-2022-02-04-at-2.28.40-PM.png?strip=all&lossy=1&ssl=1"
         image={`${process.env.REACT_APP_BASE_URL}/${image}`}
         alt="Paella dish"
       />
@@ -82,12 +89,8 @@ export const ViewCard = (products: any) => {
           <Typography ml={1}> Rs. {productDetails.price}</Typography>
         </IconButton>
         <IconButton aria-label="share">
-          <TurnedInSharpIcon />
-          <Typography ml={1}>{productDetails.category}</Typography>
-        </IconButton>
-        <IconButton aria-label="share">
           <PlaceIcon />
-          <Typography ml={1}>{productDetails.location}</Typography>
+          <Typography ml={1}>Colombo</Typography>
         </IconButton>
 
         <Button
@@ -102,6 +105,19 @@ export const ViewCard = (products: any) => {
           variant="contained"
         >
           View More
+        </Button>
+        <Button
+          sx={{
+            marginLeft: "auto",
+            backgroundColor: "red",
+            color: "white",
+            fontWeight: "1px",
+            ":hover": { bgcolor: "red", color: "white" },
+          }}
+          onClick={confirmClose}
+          variant="contained"
+        >
+          Delete
         </Button>
       </CardActions>
 
@@ -143,22 +159,13 @@ export const ViewCard = (products: any) => {
             <Typography m={2}>{productDetails.bedroomCount}</Typography>
           </IconButton>
           <IconButton aria-label="share">
-            <TurnedInSharpIcon />
-            <Typography ml={1}>{productDetails.category}</Typography>
-          </IconButton>
-          <IconButton aria-label="share">
             <PlaceIcon />
-            <Typography ml={1}>{productDetails.location}</Typography>
+            <Typography ml={1}>Colombo</Typography>
           </IconButton>
           <IconButton aria-label="share">
             <LocalOfferIcon />
             <Typography ml={1}> Rs. {productDetails.price}</Typography>
           </IconButton>
-          {productDetails.perches ? (
-            <IconButton aria-label="share">
-              <Typography ml={1}> {productDetails.perches}</Typography>
-            </IconButton>
-          ) : null}
         </Box>
         <DialogContent dividers>
           <Typography sx={{ cursor: "default", maxWidth: "auto" }} gutterBottom>
@@ -166,14 +173,7 @@ export const ViewCard = (products: any) => {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button
-            autoFocus
-            sx={{ color: "black" }}
-            onClick={(e) => {
-              e.preventDefault();
-              window.open("https://wa.me/0770097964", "_blank");
-            }}
-          >
+          <Button autoFocus sx={{ color: "black" }} onClick={handleClose}>
             Contact
           </Button>
         </DialogActions>

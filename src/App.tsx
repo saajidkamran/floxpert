@@ -2,16 +2,18 @@ import React from "react";
 import "./App.css";
 import { Header } from "./components/Header";
 import { MainPage } from "./pages/MainPage";
-import About from "./components/About";
-import ContactUs from "./components/ContactUs";
+
+import { Route, Routes } from "react-router-dom";
+import { AdminPage } from "./pages/adminPage";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <MainPage />
-      <About />
-      <ContactUs />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+      </Routes>
     </div>
   );
 }
