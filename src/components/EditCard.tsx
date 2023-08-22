@@ -26,6 +26,8 @@ export interface DialogTitleProps {
 }
 
 export const ViewCard = (products: any) => {
+  const token = localStorage.getItem("jwt");
+
   const [open, setOpen] = React.useState(false);
   const productDetails = products.products;
   const image = productDetails.image[0]?.replace("uploads", "");
@@ -37,7 +39,9 @@ export const ViewCard = (products: any) => {
   };
   const confirmClose = async () => {
     try {
-      const request = await url.delete(`/products/${productDetails._id}`);
+      const request = await url.delete(`/products/${productDetails._id}`, {
+        headers: { authorization: token },
+      });
     } catch (error) {}
   };
 

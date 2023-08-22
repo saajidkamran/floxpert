@@ -9,13 +9,11 @@ import {
   DialogContentText,
   DialogTitle,
   Fab,
-  IconButton,
   TextField,
   Typography,
 } from "@mui/material";
-import { request } from "http";
-
 export const AdminPage = () => {
+  const token = localStorage.getItem("jwt");
   const [products, setProducts] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [images, setImages] = useState<any>();
@@ -33,7 +31,7 @@ export const AdminPage = () => {
     event.preventDefault();
     setOpen(false);
     const formData = new FormData();
-console.log("per",post.perches)
+    console.log("per", post.perches);
     formData.append("title", post.title);
     formData.append("description", post.description);
     formData.append("bedroomCount", post.bedroomCount);
@@ -47,7 +45,9 @@ console.log("per",post.perches)
     }
     const formlog = Object.fromEntries(formData);
     try {
-      await url.post("/products", formData);
+      await url.post("/products", formData, {
+        headers: { authorization: token },
+      });
       window.location.reload();
     } catch (error) {}
   };

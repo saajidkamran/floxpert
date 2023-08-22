@@ -28,7 +28,7 @@ export interface DialogTitleProps {
 export const ViewCard = (products: any) => {
   const [open, setOpen] = React.useState(false);
   const productDetails = products.products;
-  const image = productDetails.image[0].replace("uploads", "");
+  const image = productDetails.image[0]?.replace("uploads", "");
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -162,11 +162,11 @@ export const ViewCard = (products: any) => {
           {productDetails.image.map((item: any) => (
             <ImageListItem key={item}>
               <img
-                src={`${process.env.REACT_APP_BASE_URL}/${item.replace(
+                src={`${process.env.REACT_APP_BASE_URL}/${item?.replace(
                   "uploads",
                   ""
                 )}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`${process.env.REACT_APP_BASE_URL}/${item.replace(
+                srcSet={`${process.env.REACT_APP_BASE_URL}/${item?.replace(
                   "uploads",
                   ""
                 )}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
