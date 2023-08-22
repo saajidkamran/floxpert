@@ -36,7 +36,6 @@ export const ViewCard = (products: any) => {
     setOpen(false);
   };
   const confirmClose = async () => {
-    console.log("result>>", productDetails._id);
     try {
       const request = await url.delete(`/products/${productDetails._id}`);
     } catch (error) {}

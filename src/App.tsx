@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import { Header } from "./components/Header";
 import { MainPage } from "./pages/MainPage";
-
 import { Route, Routes } from "react-router-dom";
 import { AdminPage } from "./pages/adminPage";
 
@@ -11,7 +10,8 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<MainPage />} />
+          
+          <Route path="/" element={<MainPage />} />
         <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </div>

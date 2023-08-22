@@ -4,11 +4,13 @@ import { ViewCard } from "../components/ViewCard";
 import url from "../api/baseurl";
 import ContactUs from "../components/ContactUs";
 import About from "../components/About";
+import { notifications } from "@mantine/notifications";
 
 export const MainPage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
+   
     async function fetchData() {
       try {
         const request = await url.get("/products");
@@ -19,6 +21,12 @@ export const MainPage = () => {
       }
     }
     fetchData();
+
+    notifications.show({
+      title: "Awesome 🔥  ",
+      message: "Make your visit , Contact us. ",
+      autoClose: false,
+    });
   }, []);
 
   return (

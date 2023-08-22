@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import { Box, ImageList, ImageListItem } from "@mui/material";
+import { Box, Divider, ImageList, ImageListItem } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import TurnedInSharpIcon from "@mui/icons-material/TurnedInSharp";
 
@@ -36,6 +36,11 @@ export const ViewCard = (products: any) => {
     setOpen(false);
   };
 
+  console.log(productDetails);
+  const shortenDesc: string = productDetails.description
+    ?.substring(0, 110)
+    .concat("...");
+
   return (
     <Card
       sx={{
@@ -55,25 +60,24 @@ export const ViewCard = (products: any) => {
         image={`${process.env.REACT_APP_BASE_URL}/${image}`}
         alt="Paella dish"
       />
-      <CardContent>
+      <CardContent sx={{ height: "10px" }}>
         <Typography
           sx={{ cursor: "default" }}
           variant="body2"
           color="text.secondary"
         >
-          {productDetails.name}
+          {productDetails.title}
         </Typography>
+        <br />
       </CardContent>
-      <CardActions
-        sx={{
-          display: "flex",
+      <div
+        style={{
+          display: "inline-flex",
           flexDirection: "row",
-          justifyContent: "space-evenly",
           flexWrap: "wrap",
         }}
-        disableSpacing
       >
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="share">
           <LocalHotelIcon />
           <Typography m={2}> {productDetails.bedroomCount} </Typography>
         </IconButton>
@@ -85,14 +89,57 @@ export const ViewCard = (products: any) => {
           <TurnedInSharpIcon />
           <Typography ml={1}>{productDetails.category}</Typography>
         </IconButton>
+      </div>
+      <Divider variant="middle" />
+
+      <div
+        style={{
+          maxWidth: "100%",
+          width: "auto",
+          padding: "15px",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      >
+        <Typography
+          mb={0}
+          sx={{ cursor: "default", maxWidth: "auto" }}
+          gutterBottom
+        >
+          {shortenDesc}
+        </Typography>
+      </div>
+      <Divider variant="middle" />
+
+      <div
+        style={{
+          display: "inline-flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+        }}
+      >
         <IconButton aria-label="share">
           <PlaceIcon />
           <Typography ml={1}>{productDetails.location}</Typography>
         </IconButton>
+        {productDetails.perches ? (
+          <IconButton aria-label="share">
+            <Typography ml={1}> {productDetails.perches}</Typography>
+          </IconButton>
+        ) : null}
+      </div>
 
+      <div
+        style={{
+          border: "black solid 2px ",
+          maxWidth: "100%",
+          width: "100%",
+          marginTop: "10px",
+        }}
+      >
         <Button
           sx={{
-            marginLeft: "auto",
+            width: "100%",
             backgroundColor: "black",
             color: "white",
             fontWeight: "1px",
@@ -103,7 +150,7 @@ export const ViewCard = (products: any) => {
         >
           View More
         </Button>
-      </CardActions>
+      </div>
 
       {/* This DIalog Box view  */}
       <BootstrapDialog onClose={handleClose} open={open}>
@@ -156,7 +203,7 @@ export const ViewCard = (products: any) => {
           </IconButton>
           {productDetails.perches ? (
             <IconButton aria-label="share">
-              <Typography ml={1}> {productDetails.perches}</Typography>
+              <Typography ml={1}> {productDetails?.perches}</Typography>
             </IconButton>
           ) : null}
         </Box>

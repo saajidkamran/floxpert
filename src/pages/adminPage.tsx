@@ -27,16 +27,13 @@ export const AdminPage = () => {
 
   const handlechange = (event: any) => {
     event.preventDefault();
-
-    console.log("asd>", event.target.files);
-
     setImages(event.target.files);
   };
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     setOpen(false);
     const formData = new FormData();
-
+console.log("per",post.perches)
     formData.append("title", post.title);
     formData.append("description", post.description);
     formData.append("bedroomCount", post.bedroomCount);
