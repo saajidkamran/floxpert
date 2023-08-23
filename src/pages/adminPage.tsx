@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import axios from "axios";
 import url from "../api/baseurl";
 import { ViewCard } from "../components/EditCard";
 import {
@@ -12,12 +11,16 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { notifications } from "@mantine/notifications";
+
 export const AdminPage = () => {
   const token = localStorage.getItem("jwt");
   const [products, setProducts] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [images, setImages] = useState<any>();
   const [post, setPost] = useState<any>({});
+  const navigate = useNavigate();
 
   const handleInput = (e: any) => {
     setPost({ ...post, [e.target.name]: e.target.value });
@@ -43,13 +46,19 @@ export const AdminPage = () => {
     for (let i = 0; i < images.length; i++) {
       formData.append("image", images[i]);
     }
-    const formlog = Object.fromEntries(formData);
     try {
       await url.post("/products", formData, {
         headers: { authorization: token },
       });
+      notifications.show({
+        title: "Added",
+        message: "Successfully Added ",
+        autoClose: 2000,
+      });
       window.location.reload();
-    } catch (error) {}
+    } catch (error: any) {
+      throw new Error("Error", error);
+    }
   };
 
   const handleClickOpen = () => {
@@ -225,10 +234,24 @@ export const AdminPage = () => {
 
         {Form}
       </div>
-
+      <Button
+        sx={{
+          m: "auto 0 0 10px",
+          bgcolor: "red",
+          color: "white",
+          "&:hover": {
+            bgcolor: "red",
+          },
+        }}
+        onClick={() => {
+          localStorage.clear();
+          navigate("/");
+        }}
+      >
+        Logout
+      </Button>
       <div
         style={{
-          //   border: "1px solid black",
           display: "flex",
           justifyContent: "space-evenly",
           flexDirection: "row",

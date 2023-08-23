@@ -57,7 +57,7 @@ export const ViewCard = (products: any) => {
       <CardMedia
         component="img"
         height="194"
-        image={`${process.env.REACT_APP_BASE_URL}/${image}`}
+        image={`${process.env.REACT_APP_BASE_URL}${image}`}
         alt="Paella dish"
       />
       <CardContent sx={{ height: "10px" }}>
@@ -72,9 +72,10 @@ export const ViewCard = (products: any) => {
       </CardContent>
       <div
         style={{
-          display: "inline-flex",
+          display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
+          justifyContent: "space-between",
         }}
       >
         <IconButton aria-label="share">
@@ -85,11 +86,14 @@ export const ViewCard = (products: any) => {
           <LocalOfferIcon />
           <Typography ml={1}> Rs. {productDetails.price}</Typography>
         </IconButton>
+      </div>
+      <div>
         <IconButton aria-label="share">
           <TurnedInSharpIcon />
           <Typography ml={1}>{productDetails.category}</Typography>
         </IconButton>
       </div>
+
       <Divider variant="middle" />
 
       <div
@@ -113,9 +117,10 @@ export const ViewCard = (products: any) => {
 
       <div
         style={{
-          display: "inline-flex",
+          display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
+          justifyContent: "space-between",
         }}
       >
         <IconButton aria-label="share">

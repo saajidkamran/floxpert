@@ -1,6 +1,5 @@
-import { Container } from "@mantine/core";
+import { Center, Container, Flex } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -9,17 +8,17 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  IconButton,
-  InputAdornment,
   Stack,
   TextField,
 } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
-  //   const notifications = useNotificationsEvents();
 
   const [details, setDetails] = useState({
     username: "",
@@ -39,19 +38,22 @@ export default function Login() {
           password: details.password,
         }
       );
+      navigate("/admin");
       notifications.show({
         title: "Access Granted  ",
         message: "Successfully Authorization",
         autoClose: 2000,
       });
-
+      console.log(response);
       localStorage.setItem("jwt", "Bearer " + response.data.token);
       localStorage.setItem("user", response.data.email);
     } catch (error) {
+      setDetails({
+        username: "",
+        password: "",
+      });
       setOpen(true);
     }
-
-    // auth.login(details.username);
   };
   const handleClose = () => {
     setOpen(false);
@@ -75,25 +77,27 @@ export default function Login() {
       </DialogActions>
     </Dialog>
   );
-  //   useEffect(() => {
-  //     // // check if any validation errors are present
-  //     // async function fetchData() {
 
-  //     // }
-  //     // fetchData();
-  //   }, [errors]);
   return (
     <Box
-      width={"50%"}
+     
       pt={2}
       pb={2}
       ml="auto"
       mr="auto"
       mt={20}
       border={"2px solid black"}
-      sx={{ boxShadow: 10 }}
+      sx={{
+        maxWidth:'100%',
+        width:"500px",
+        boxShadow: 10,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "Center",
+        flexWrap: "wrap",
+      }}
     >
-      <Box mb={5}>
+      <Box>
         <Container>
           <Stack mb={2}>
             <TextField
@@ -102,13 +106,14 @@ export default function Login() {
               name="username"
               variant="outlined"
               size="medium"
+              sx={{ margin: "5px auto" }}
               onChange={handleChange("username")}
               //   error={errors.username && true}
               //   helperText={errors.username && "Username Required !"}
             />
 
             <TextField
-              //   className={classes.textField}
+              sx={{ margin: "5px auto" }}
               id="outlined-basic"
               label="Password"
               variant="outlined"
@@ -122,7 +127,11 @@ export default function Login() {
           </Stack>
         </Container>
       </Box>
-      <Button onClick={handlesubmit} variant="contained">
+      <Button
+        sx={{ maxWidth: "100%", width: "50px", margin: "5px auto" }}
+        onClick={handlesubmit}
+        variant="contained"
+      >
         Login
       </Button>
       {alert}

@@ -5,6 +5,7 @@ import { MainPage } from "./pages/MainPage";
 import { Route, Routes } from "react-router-dom";
 import { AdminPage } from "./pages/adminPage";
 import Login from "./pages/Login";
+import { RequireAuth } from "./components/RequireAuth";
 
 function App() {
   return (
@@ -12,7 +13,14 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route
+          path="/admin"
+          element={
+            <RequireAuth>
+              <AdminPage />
+            </RequireAuth>
+          }
+        />
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>
