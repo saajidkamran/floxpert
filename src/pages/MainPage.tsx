@@ -10,14 +10,13 @@ export const MainPage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-   
     async function fetchData() {
       try {
         const request = await url.get("/products");
         setProducts(request.data);
         return request;
-      } catch (error) {
-        console.log(">>", error);
+      } catch (error: any) {
+        throw new Error("Error", error);
       }
     }
     fetchData();

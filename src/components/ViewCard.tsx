@@ -57,7 +57,7 @@ export const ViewCard = (products: any) => {
       <CardMedia
         component="img"
         height="194"
-        image={`${process.env.REACT_APP_BASE_URL}/${image}`}
+        image={`${process.env.REACT_APP_BASE_URL}${image}`}
         alt="Paella dish"
       />
       <CardContent sx={{ height: "10px" }}>

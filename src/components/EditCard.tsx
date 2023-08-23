@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -15,6 +15,7 @@ import DialogActions from "@mui/material/DialogActions";
 import { Box, ImageList, ImageListItem } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import url from "../api/baseurl";
+import { notifications } from "@mantine/notifications";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   // margin: "auto",
@@ -39,10 +40,17 @@ export const ViewCard = (products: any) => {
   };
   const confirmClose = async () => {
     try {
-      const request = await url.delete(`/products/${productDetails._id}`, {
+      await url.delete(`/products/${productDetails._id}`, {
         headers: { authorization: token },
       });
-    } catch (error) {}
+      notifications.show({
+        title: "Deleted",
+        message: "Successfully Deleted ",
+        autoClose: 2000,
+      });
+    } catch (error: any) {
+      throw new Error("Error", error);
+    }
   };
 
   return (
@@ -134,6 +142,7 @@ export const ViewCard = (products: any) => {
           {productDetails.image.map((item: any) => (
             <ImageListItem key={item}>
               <img
+                alt="#"
                 src={`${process.env.REACT_APP_BASE_URL}/${item.replace(
                   "uploads",
                   ""
