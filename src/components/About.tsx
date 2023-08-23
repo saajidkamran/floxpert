@@ -1,6 +1,6 @@
 import { Avatar, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
-import avatarPic from "../images/avatar.jpg";
+import avatarPic from "../images/avatar.jpeg";
 import "./Intro.css";
 
 const About = () => {
@@ -74,7 +74,7 @@ const About = () => {
         >
           <Typography
             ref={myref}
-            fontSize={30}
+            fontSize={25}
             color="grey"
             fontFamily="Caveat"
             sx={{
@@ -82,7 +82,8 @@ const About = () => {
                 elmentVisible ? "moveupAbout 1s 1 normal forwards" : null
               }`,
               maxWidth: "100%",
-              width: "50%",
+              padding: "20px",
+              width: "500px",
               maxHeight: "100%",
             }}
           >
@@ -136,13 +137,13 @@ const About = () => {
           }}
         >
           <Typography color="white" variant="h4" mt={2} mb={1}>
-            M Shiran Abdurahman
+            M R SHIRAN
           </Typography>
           <div
             style={{ border: "1px solid yellow", width: "2%", margin: "auto" }}
           />
           <Typography color="white" variant="h6" mb={4}>
-            General Manager
+            Director
           </Typography>
         </div>
       </div>

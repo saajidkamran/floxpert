@@ -3,7 +3,6 @@ import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
@@ -15,6 +14,7 @@ import DialogActions from "@mui/material/DialogActions";
 import { Box, Divider, ImageList, ImageListItem } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import TurnedInSharpIcon from "@mui/icons-material/TurnedInSharp";
+import { Navigate } from "react-router-dom";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   // margin: "auto",
@@ -30,6 +30,7 @@ export const ViewCard = (products: any) => {
   const productDetails = products.products;
   const image = productDetails.image[0]?.replace("uploads", "");
   const handleClickOpen = () => {
+    <Navigate to="/admin" />;
     setOpen(true);
   };
   const handleClose = () => {
@@ -167,6 +168,7 @@ export const ViewCard = (products: any) => {
           {productDetails.image.map((item: any) => (
             <ImageListItem key={item}>
               <img
+              alt="#"
                 src={`${process.env.REACT_APP_BASE_URL}/${item?.replace(
                   "uploads",
                   ""

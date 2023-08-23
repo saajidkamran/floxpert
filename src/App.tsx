@@ -12,6 +12,7 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
+        
         <Route path="/" element={<MainPage />} />
         <Route
           path="/admin"

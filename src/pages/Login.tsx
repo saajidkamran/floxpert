@@ -1,4 +1,4 @@
-import { Center, Container, Flex } from "@mantine/core";
+import {  Container } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import {
   Box,
@@ -57,6 +57,7 @@ export default function Login() {
   };
   const handleClose = () => {
     setOpen(false);
+    window.location.reload();
   };
 
   const alert = (
@@ -80,7 +81,6 @@ export default function Login() {
 
   return (
     <Box
-     
       pt={2}
       pb={2}
       ml="auto"
@@ -88,8 +88,8 @@ export default function Login() {
       mt={20}
       border={"2px solid black"}
       sx={{
-        maxWidth:'100%',
-        width:"500px",
+        maxWidth: "100%",
+        width: "500px",
         boxShadow: 10,
         display: "flex",
         flexDirection: "column",

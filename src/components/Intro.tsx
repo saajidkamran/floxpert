@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import image from "../images/wallpaperflare.com_wallpaper.jpg";
 import "./Intro.css";
 
@@ -8,7 +8,7 @@ export const Intro = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
+      return entries[0];
     });
     observer.observe(myref.current);
   }, []);
@@ -83,7 +83,7 @@ export const Intro = () => {
             color: "white",
           }}
         >
-          Fkoxpert is your trusted partner for real estate and rental
+          Floxpert is your trusted partner for real estate and rental
           properties. We offer brokerage, property management, and advisory
           services.
         </Typography>
