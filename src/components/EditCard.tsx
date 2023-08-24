@@ -3,7 +3,6 @@ import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
@@ -12,10 +11,12 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import { Box, ImageList, ImageListItem } from "@mui/material";
+import { Box, Divider, ImageList, ImageListItem } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import url from "../api/baseurl";
 import { notifications } from "@mantine/notifications";
+import TurnedInSharpIcon from "@mui/icons-material/TurnedInSharp";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   // margin: "auto",
@@ -52,7 +53,9 @@ export const ViewCard = (products: any) => {
       throw new Error("Error", error);
     }
   };
-
+  const shortenDesc: string = productDetails.description
+    ?.substring(0, 110)
+    .concat("...");
   return (
     <Card
       sx={{
@@ -68,55 +71,121 @@ export const ViewCard = (products: any) => {
     >
       <CardMedia
         component="img"
-        height="194"
-        // image="https://exej2saedb8.exactdn.com/wp-content/uploads/2022/02/Screen-Shot-2022-02-04-at-2.28.40-PM.png?strip=all&lossy=1&ssl=1"
-        image={`${process.env.REACT_APP_BASE_URL}/${image}`}
+        height="250"
+        image={`${process.env.REACT_APP_BASE_URL}${image}`}
         alt="Paella dish"
       />
-      <CardContent>
+      <CardContent sx={{ height: "10px" }}>
         <Typography
+          fontSize={18}
           sx={{ cursor: "default" }}
-          variant="body2"
+          variant="subtitle2"
           color="text.secondary"
         >
-          {productDetails.name}
+          {productDetails.title}
         </Typography>
+        <Divider variant="middle" />
       </CardContent>
-      <CardActions
-        sx={{
+      <div
+        style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-evenly",
           flexWrap: "wrap",
+          justifyContent: "space-between",
         }}
-        disableSpacing
       >
-        <IconButton aria-label="add to favorites">
+        <IconButton
+          sx={{
+            ":hover": {
+              bgcolor: "transparent",
+            },
+          }}
+          aria-label="share"
+        >
           <LocalHotelIcon />
           <Typography m={2}> {productDetails.bedroomCount} </Typography>
         </IconButton>
-        <IconButton aria-label="share">
+        <IconButton
+          sx={{
+            ":hover": {
+              bgcolor: "transparent",
+            },
+          }}
+          aria-label="share"
+        >
           <LocalOfferIcon />
           <Typography ml={1}> Rs. {productDetails.price}</Typography>
         </IconButton>
-        <IconButton aria-label="share">
-          <PlaceIcon />
-          <Typography ml={1}>Colombo</Typography>
-        </IconButton>
 
-        <Button
+        <IconButton
           sx={{
-            marginLeft: "auto",
-            backgroundColor: "black",
-            color: "white",
-            fontWeight: "1px",
-            ":hover": { bgcolor: "black", color: "white" },
+            ":hover": {
+              bgcolor: "transparent",
+            },
           }}
-          onClick={handleClickOpen}
-          variant="contained"
+          aria-label="share"
         >
-          View More
-        </Button>
+          <TurnedInSharpIcon />
+          <Typography ml={1}>{productDetails.category}</Typography>
+        </IconButton>
+      </div>
+
+      <Divider variant="middle" />
+
+      <div
+        style={{
+          maxWidth: "100%",
+          width: "auto",
+          padding: "15px",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      >
+        <Typography
+          mb={0}
+          textAlign={"left"}
+          sx={{ cursor: "default", maxWidth: "auto", height: "60px" }}
+          gutterBottom
+          variant="subtitle2"
+        >
+          {shortenDesc}
+        </Typography>
+      </div>
+      <Divider variant="middle" />
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+        }}
+      >
+        <IconButton
+          sx={{
+            ":hover": {
+              bgcolor: "transparent",
+            },
+          }}
+          aria-label="share"
+        >
+          <PlaceIcon />
+          <Typography ml={1}>{productDetails.location}</Typography>
+        </IconButton>
+        {productDetails.perches && productDetails.perches !== "undefined" ? (
+          <IconButton
+            sx={{
+              ":hover": {
+                bgcolor: "transparent",
+              },
+            }}
+            aria-label="share"
+          >
+            <Typography ml={1}> {productDetails?.perches}</Typography>
+          </IconButton>
+        ) : null}
+      </div>
+      <div>
         <Button
           sx={{
             marginLeft: "auto",
@@ -128,10 +197,32 @@ export const ViewCard = (products: any) => {
           onClick={confirmClose}
           variant="contained"
         >
-          Delete
+          <DeleteIcon />
         </Button>
-      </CardActions>
+      </div>
 
+      <div
+        style={{
+          border: "black solid 2px ",
+          maxWidth: "100%",
+          width: "100%",
+          marginTop: "5px",
+        }}
+      >
+        <Button
+          sx={{
+            width: "100%",
+            backgroundColor: "black",
+            color: "white",
+            fontWeight: "1px",
+            ":hover": { bgcolor: "black", color: "white" },
+          }}
+          onClick={handleClickOpen}
+          variant="contained"
+        >
+          View More
+        </Button>
+      </div>
       {/* This DIalog Box view  */}
       <BootstrapDialog onClose={handleClose} open={open}>
         <ImageList

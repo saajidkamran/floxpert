@@ -34,7 +34,6 @@ export const AdminPage = () => {
     event.preventDefault();
     setOpen(false);
     const formData = new FormData();
-    console.log("per", post.perches);
     formData.append("title", post.title);
     formData.append("description", post.description);
     formData.append("bedroomCount", post.bedroomCount);
@@ -75,7 +74,6 @@ export const AdminPage = () => {
         setProducts(request.data);
         return request;
       } catch (error) {
-        console.log(">>", error);
       }
     }
     fetchData();
@@ -237,10 +235,10 @@ export const AdminPage = () => {
       <Button
         sx={{
           m: "auto 0 0 10px",
-          bgcolor: "red",
+          bgcolor: "grey",
           color: "white",
           "&:hover": {
-            bgcolor: "red",
+            bgcolor: "grey",
           },
         }}
         onClick={() => {

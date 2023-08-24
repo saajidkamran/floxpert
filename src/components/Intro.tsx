@@ -56,17 +56,18 @@ export const Intro = () => {
         />
         <Typography
           maxWidth="100%"
-          width="50%"
+          width="500px"
           sx={{
             color: "white",
             fontWeight: "bold",
             fontFamily: "Georgia, 'Times New Roman', Times, serif",
             animation: "moveleft 2s 1 normal forwards",
+            padding: "10px",
           }}
           variant="h3"
           paddingTop="40px "
         >
-          Floxpert
+          Floxpert Holdings
         </Typography>
 
         <Typography
@@ -81,11 +82,12 @@ export const Intro = () => {
             margin: " 30px auto 0",
             fontSize: "20px",
             color: "white",
+            padding: "10px",
           }}
         >
           Floxpert is your trusted partner for real estate and rental
-          properties. We offer brokerage, property management, and advisory
-          services.
+          properties. We offer brokerage, property management, consultancy and
+          legal services.
         </Typography>
       </Box>
     </Box>

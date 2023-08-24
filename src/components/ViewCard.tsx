@@ -28,6 +28,7 @@ export interface DialogTitleProps {
 export const ViewCard = (products: any) => {
   const [open, setOpen] = React.useState(false);
   const productDetails = products.products;
+  console.log("productDetails", productDetails);
   const image = productDetails.image[0]?.replace("uploads", "");
   const handleClickOpen = () => {
     <Navigate to="/admin" />;
@@ -37,7 +38,6 @@ export const ViewCard = (products: any) => {
     setOpen(false);
   };
 
-  console.log(productDetails);
   const shortenDesc: string = productDetails.description
     ?.substring(0, 110)
     .concat("...");
@@ -46,7 +46,8 @@ export const ViewCard = (products: any) => {
     <Card
       sx={{
         margin: "30px 20px ",
-        maxWidth: 345,
+        maxWidth: "auto ",
+        width: "390px",
         transition: " 1.1s",
         boxShadow:
           " inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),0.3em 0.3em 1em rgba(0, 0, 0, 0.3)",
@@ -57,19 +58,20 @@ export const ViewCard = (products: any) => {
     >
       <CardMedia
         component="img"
-        height="194"
+        height="250"
         image={`${process.env.REACT_APP_BASE_URL}${image}`}
         alt="Paella dish"
       />
       <CardContent sx={{ height: "10px" }}>
         <Typography
+          fontSize={18}
           sx={{ cursor: "default" }}
-          variant="body2"
+          variant="subtitle2"
           color="text.secondary"
         >
           {productDetails.title}
         </Typography>
-        <br />
+        <Divider variant="middle" />
       </CardContent>
       <div
         style={{
@@ -79,17 +81,37 @@ export const ViewCard = (products: any) => {
           justifyContent: "space-between",
         }}
       >
-        <IconButton aria-label="share">
+        <IconButton
+          sx={{
+            ":hover": {
+              bgcolor: "transparent",
+            },
+          }}
+          aria-label="share"
+        >
           <LocalHotelIcon />
           <Typography m={2}> {productDetails.bedroomCount} </Typography>
         </IconButton>
-        <IconButton aria-label="share">
+        <IconButton
+          sx={{
+            ":hover": {
+              bgcolor: "transparent",
+            },
+          }}
+          aria-label="share"
+        >
           <LocalOfferIcon />
           <Typography ml={1}> Rs. {productDetails.price}</Typography>
         </IconButton>
-      </div>
-      <div>
-        <IconButton aria-label="share">
+
+        <IconButton
+          sx={{
+            ":hover": {
+              bgcolor: "transparent",
+            },
+          }}
+          aria-label="share"
+        >
           <TurnedInSharpIcon />
           <Typography ml={1}>{productDetails.category}</Typography>
         </IconButton>
@@ -108,8 +130,10 @@ export const ViewCard = (products: any) => {
       >
         <Typography
           mb={0}
-          sx={{ cursor: "default", maxWidth: "auto" }}
+          textAlign={"left"}
+          sx={{ cursor: "default", maxWidth: "auto", height: "60px" }}
           gutterBottom
+          variant="subtitle2"
         >
           {shortenDesc}
         </Typography>
@@ -124,13 +148,27 @@ export const ViewCard = (products: any) => {
           justifyContent: "space-between",
         }}
       >
-        <IconButton aria-label="share">
+        <IconButton
+          sx={{
+            ":hover": {
+              bgcolor: "transparent",
+            },
+          }}
+          aria-label="share"
+        >
           <PlaceIcon />
           <Typography ml={1}>{productDetails.location}</Typography>
         </IconButton>
-        {productDetails.perches ? (
-          <IconButton aria-label="share">
-            <Typography ml={1}> {productDetails.perches}</Typography>
+        {productDetails.perches && productDetails.perches !== "undefined" ? (
+          <IconButton
+            sx={{
+              ":hover": {
+                bgcolor: "transparent",
+              },
+            }}
+            aria-label="share"
+          >
+            <Typography ml={1}> {productDetails?.perches}</Typography>
           </IconButton>
         ) : null}
       </div>
@@ -161,14 +199,14 @@ export const ViewCard = (products: any) => {
       {/* This DIalog Box view  */}
       <BootstrapDialog onClose={handleClose} open={open}>
         <ImageList
-          sx={{ maxWidth: "100%", width: "600px", height: 450 }}
+          sx={{ maxWidth: "100%", width: "700px", height: 450 }}
           cols={2}
           rowHeight={164}
         >
           {productDetails.image.map((item: any) => (
             <ImageListItem key={item}>
               <img
-              alt="#"
+                alt="#"
                 src={`${process.env.REACT_APP_BASE_URL}/${item?.replace(
                   "uploads",
                   ""
@@ -186,30 +224,67 @@ export const ViewCard = (products: any) => {
           sx={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between",
-            height: "50px",
+            justifyContent: "space-evenly",
+            flexWrap: "wrap",
+            height: "100%",
             marginLeft: "auto",
             marginRight: "auto",
+            maxHeight: "100%",
           }}
         >
-          <IconButton aria-label="add to favorites">
+          <IconButton
+            sx={{
+              ":hover": {
+                bgcolor: "transparent",
+              },
+            }}
+            aria-label="add to favorites"
+          >
             <LocalHotelIcon />
             <Typography m={2}>{productDetails.bedroomCount}</Typography>
           </IconButton>
-          <IconButton aria-label="share">
+          <IconButton
+            sx={{
+              ":hover": {
+                bgcolor: "transparent",
+              },
+            }}
+            aria-label="share"
+          >
             <TurnedInSharpIcon />
             <Typography ml={1}>{productDetails.category}</Typography>
           </IconButton>
-          <IconButton aria-label="share">
+          <IconButton
+            sx={{
+              ":hover": {
+                bgcolor: "transparent",
+              },
+            }}
+            aria-label="share"
+          >
             <PlaceIcon />
             <Typography ml={1}>{productDetails.location}</Typography>
           </IconButton>
-          <IconButton aria-label="share">
+          <IconButton
+            sx={{
+              ":hover": {
+                bgcolor: "transparent",
+              },
+            }}
+            aria-label="share"
+          >
             <LocalOfferIcon />
             <Typography ml={1}> Rs. {productDetails.price}</Typography>
           </IconButton>
-          {productDetails.perches ? (
-            <IconButton aria-label="share">
+          {productDetails.perches && productDetails.perches !== "undefined" ? (
+            <IconButton
+              sx={{
+                ":hover": {
+                  bgcolor: "transparent",
+                },
+              }}
+              aria-label="share"
+            >
               <Typography ml={1}> {productDetails?.perches}</Typography>
             </IconButton>
           ) : null}
