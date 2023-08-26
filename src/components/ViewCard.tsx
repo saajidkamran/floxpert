@@ -29,7 +29,7 @@ export const ViewCard = (products: any) => {
   const [open, setOpen] = React.useState(false);
   const productDetails = products.products;
   console.log("productDetails", productDetails);
-  const image = productDetails.image[0]?.replace("uploads", "");
+  const image = productDetails?.image[0];
   const handleClickOpen = () => {
     <Navigate to="/admin" />;
     setOpen(true);
@@ -59,8 +59,8 @@ export const ViewCard = (products: any) => {
       <CardMedia
         component="img"
         height="250"
-        image={`${process.env.REACT_APP_BASE_URL}${image}`}
-        alt="Paella dish"
+        src={`${image}`}
+        alt="Not found or Admin have  removed "
       />
       <CardContent sx={{ height: "10px" }}>
         <Typography
@@ -206,15 +206,14 @@ export const ViewCard = (products: any) => {
           {productDetails.image.map((item: any) => (
             <ImageListItem key={item}>
               <img
-                alt="#"
-                src={`${process.env.REACT_APP_BASE_URL}/${item?.replace(
-                  "uploads",
-                  ""
-                )}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`${process.env.REACT_APP_BASE_URL}/${item?.replace(
-                  "uploads",
-                  ""
-                )}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                alt="Loading"
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  padding: "2px",
+                }}
+                src={`${item}`}
+                srcSet={`${item}`}
                 loading="lazy"
               />
             </ImageListItem>
