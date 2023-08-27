@@ -1,4 +1,4 @@
-import {  Container } from "@mantine/core";
+import { Container } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import {
   Box,
@@ -14,8 +14,14 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Login() {
+  const cookies = new Cookies(null, { path: "/" });
+  const [loadingUpdate, setLoadingUpdate] = useState(false);
+
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
@@ -30,6 +36,7 @@ export default function Login() {
   };
 
   const handlesubmit = async (e: any) => {
+    setLoadingUpdate(true);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/login`,
@@ -38,15 +45,20 @@ export default function Login() {
           password: details.password,
         }
       );
+      setLoadingUpdate(false);
+
       navigate("/admin");
       notifications.show({
         title: "Access Granted  ",
         message: "Successfully Authorization",
         autoClose: 2000,
       });
-      console.log(response);
-      localStorage.setItem("jwt", "Bearer " + response.data.token);
-      localStorage.setItem("user", response.data.email);
+      cookies.set("jwt", `Bearer ${response.data.token}`, {
+        path: "/",
+        expires: new Date(Date.now() + 30 * 60 * 1000),
+      });
+
+      console.log("cookie ", cookies.get("jwt"));
     } catch (error) {
       setDetails({
         username: "",
@@ -135,6 +147,14 @@ export default function Login() {
         Login
       </Button>
       {alert}
+      {loadingUpdate ? (
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={loadingUpdate}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      ) : null}
     </Box>
   );
 }

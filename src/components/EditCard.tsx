@@ -17,6 +17,7 @@ import url from "../api/baseurl";
 import { notifications } from "@mantine/notifications";
 import TurnedInSharpIcon from "@mui/icons-material/TurnedInSharp";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Cookies from "universal-cookie";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   // margin: "auto",
@@ -28,7 +29,9 @@ export interface DialogTitleProps {
 }
 
 export const ViewCard = (products: any) => {
-  const token = localStorage.getItem("jwt");
+  const cookies = new Cookies(null, { path: "/" });
+
+  const token = cookies.get("jwt");
 
   const [open, setOpen] = React.useState(false);
   const productDetails = products.products;

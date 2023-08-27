@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import LinearProgress from "@mui/material/LinearProgress";
 import url from "../api/baseurl";
 import { ViewCard } from "../components/EditCard";
 import {
+  Box,
   Button,
   Dialog,
   DialogContentText,
   DialogTitle,
-  Fab,
+  // Fab,
   TextField,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { notifications } from "@mantine/notifications";
+import Cookies from "universal-cookie";
 
 export const AdminPage = () => {
-  const token = localStorage.getItem("jwt");
+  const cookies = new Cookies();
+  const [loading, setLoading] = useState(true);
+  const [loadingUpdate, setLoadingUpdate] = useState(false);
+
+  const token = cookies.get("jwt");
   const [products, setProducts] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [images, setImages] = useState<any>();
@@ -32,6 +40,8 @@ export const AdminPage = () => {
   };
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+
+    setLoadingUpdate(true);
     setOpen(false);
     const formData = new FormData();
     formData.append("title", post.title);
@@ -42,21 +52,24 @@ export const AdminPage = () => {
     formData.append("location", post.location);
     formData.append("category", post.category);
 
-    for (let i = 0; i < images.length; i++) {
-      formData.append("image", images[i]);
-    }
     try {
+      for (let i = 0; i < images.length; i++) {
+        formData.append("image", images[i]);
+      }
       await url.post("/products", formData, {
         headers: { authorization: token },
       });
+      setLoadingUpdate(false);
       notifications.show({
         title: "Added",
         message: "Successfully Added ",
-        autoClose: 2000,
+        autoClose: 2500,
       });
       window.location.reload();
-    } catch (error: any) {
-      throw new Error("Error", error);
+    } catch (error) {
+      setLoadingUpdate(false);
+      alert("There was an error while uploading please refresh and retry !");
+      console.log(error);
     }
   };
 
@@ -72,8 +85,10 @@ export const AdminPage = () => {
       try {
         const request = await url.get("/products");
         setProducts(request.data);
+        setLoading(false);
         return request;
       } catch (error) {
+        setLoading(false);
       }
     }
     fetchData();
@@ -166,10 +181,16 @@ export const AdminPage = () => {
             name="location"
           />
         </div>
-
-        <label style={{ margin: "20px auto" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {/* <label style={{ margin: "20px auto" }}> */}
           <input
-            style={{ display: "none" }}
+            // style={{ display: "none" }}
             id="upload-photo"
             name="image"
             type="file"
@@ -177,17 +198,9 @@ export const AdminPage = () => {
             onChange={handlechange}
           />
 
-          <Fab
-            color="inherit"
-            size="small"
-            component="span"
-            aria-label="add"
-            variant="extended"
-          >
-            <CloudUploadIcon />
-            Upload photo
-          </Fab>
-        </label>
+          <Typography m={2}>Upload photo</Typography>
+        </div>
+
         <Button
           sx={{
             marginLeft: "auto",
@@ -242,7 +255,7 @@ export const AdminPage = () => {
           },
         }}
         onClick={() => {
-          localStorage.clear();
+          cookies.remove("jwt", { path: "/" });
           navigate("/");
         }}
       >
@@ -260,9 +273,23 @@ export const AdminPage = () => {
           marginRight: "auto",
         }}
       >
-        {products?.map((prod: any) => {
-          return <ViewCard products={prod} />;
-        })}
+        {loadingUpdate ? (
+          <Backdrop
+            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={loadingUpdate}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
+        ) : null}
+        {loading ? (
+          <Box sx={{ width: "100%" }}>
+            <LinearProgress />
+          </Box>
+        ) : (
+          products?.map((prod: any) => {
+            return <ViewCard products={prod} />;
+          })
+        )}
       </div>
     </div>
   );

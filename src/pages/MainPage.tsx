@@ -5,17 +5,22 @@ import url from "../api/baseurl";
 import ContactUs from "../components/ContactUs";
 import About from "../components/About";
 import { notifications } from "@mantine/notifications";
+import { Box } from "@mui/material";
+import LinearProgress from "@mui/material/LinearProgress";
 
 export const MainPage = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const request = await url.get("/products");
+        setLoading(false);
         setProducts(request.data);
         return request;
       } catch (error: any) {
+        setLoading(false);
         throw new Error("Error", error);
       }
     }
@@ -43,9 +48,15 @@ export const MainPage = () => {
           marginRight: "auto",
         }}
       >
-        {products?.map((prod: any) => {
-          return <ViewCard products={prod} />;
-        })}
+        {loading ? (
+          <Box sx={{ width: "100%" }}>
+            <LinearProgress color="inherit" />
+          </Box>
+        ) : (
+          products?.map((prod: any) => {
+            return <ViewCard products={prod} />;
+          })
+        )}
       </div>
       <About />
       <ContactUs />
