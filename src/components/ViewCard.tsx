@@ -62,25 +62,37 @@ export const ViewCard = (products: any) => {
         src={`${image}`}
         alt="Not found or Admin have  removed "
       />
-      <CardContent sx={{ height: "10px" }}>
+      <div
+        style={{
+          width: "100%",
+          padding: "10px auto",
+          textAlign: "left",
+          maxHeight: "100%",
+          height: "auto",
+        }}
+      >
         <Typography
           fontSize={18}
           sx={{ cursor: "default" }}
           variant="subtitle2"
           color="text.secondary"
+          m="10px"
         >
           {productDetails.title}
         </Typography>
-        <Divider variant="middle" />
-      </CardContent>
+      </div>
+
+      <Divider variant="middle" />
       <div
         style={{
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
           justifyContent: "space-between",
+          marginTop: "20px",
         }}
       >
+        
         <IconButton
           sx={{
             ":hover": {
@@ -200,8 +212,8 @@ export const ViewCard = (products: any) => {
       <BootstrapDialog onClose={handleClose} open={open}>
         <ImageList
           sx={{ maxWidth: "100%", width: "700px", height: 450 }}
-          cols={2}
-          rowHeight={164}
+          cols={1}
+        
         >
           {productDetails.image.map((item: any) => (
             <ImageListItem key={item}>

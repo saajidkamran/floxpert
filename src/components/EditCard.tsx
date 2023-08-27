@@ -78,17 +78,27 @@ export const ViewCard = (products: any) => {
         src={`${image}`}
         alt="Not found or Admin have  removed "
       />
-      <CardContent sx={{ height: "10px" }}>
+      <div
+        style={{
+          width: "100%",
+          padding: "10px auto",
+          textAlign: "left",
+          maxHeight: "100%",
+          height: "auto",
+        }}
+      >
         <Typography
           fontSize={18}
           sx={{ cursor: "default" }}
           variant="subtitle2"
           color="text.secondary"
+          m="10px"
         >
           {productDetails.title}
         </Typography>
-        <Divider variant="middle" />
-      </CardContent>
+      </div>
+
+      <Divider variant="middle" />
       <div
         style={{
           display: "flex",

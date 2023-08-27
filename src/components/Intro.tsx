@@ -56,7 +56,7 @@ export const Intro = () => {
         />
         <Typography
           maxWidth="100%"
-          width="500px"
+          width="600px"
           sx={{
             color: "white",
             fontWeight: "bold",
@@ -67,7 +67,7 @@ export const Intro = () => {
           variant="h3"
           paddingTop="40px "
         >
-          Floxpert Holdings
+          Floxpert Holdings (Pvt) Ltd
         </Typography>
 
         <Typography
