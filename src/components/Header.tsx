@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-scroll";
+import Logo from "../images/logo.svg";
+
 import React from "react";
 
 export const Header = () => {
@@ -24,7 +26,7 @@ export const Header = () => {
     <Box sx={{ display: "flex", top: 0, zIndex: 40, position: "sticky" }}>
       <CssBaseline />
       <AppBar
-        sx={{ boxShadow: "none", backgroundColor: "#272829" }}
+        sx={{ boxShadow: "none", backgroundColor: "#272829", height: "62px" }}
         component="nav"
       >
         <Toolbar>
@@ -48,7 +50,15 @@ export const Header = () => {
               display: { fontWeight: "bold", xs: "block", sm: "block" },
             }}
           >
-            Floxpert
+            <img
+              style={{
+                width: "100px",
+                height: "100px",
+                marginTop: "10px",
+              }}
+              src={Logo}
+            />
+            {/* Floxpert */}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
             <Link
