@@ -2,7 +2,6 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
@@ -89,10 +88,10 @@ export const ViewCard = (products: any) => {
           flexDirection: "row",
           flexWrap: "wrap",
           justifyContent: "space-between",
-          marginTop: "20px",
+          maxHeight: "100%",
+          height: "80px",
         }}
       >
-        
         <IconButton
           sx={{
             ":hover": {
@@ -115,7 +114,8 @@ export const ViewCard = (products: any) => {
           <LocalOfferIcon />
           <Typography ml={1}> Rs. {productDetails.price}</Typography>
         </IconButton>
-
+      </div>
+      <div>
         <IconButton
           sx={{
             ":hover": {
@@ -128,7 +128,6 @@ export const ViewCard = (products: any) => {
           <Typography ml={1}>{productDetails.category}</Typography>
         </IconButton>
       </div>
-
       <Divider variant="middle" />
 
       <div
@@ -211,10 +210,8 @@ export const ViewCard = (products: any) => {
       {/* This DIalog Box view  */}
       <BootstrapDialog onClose={handleClose} open={open}>
         <ImageList
-        
           sx={{ maxWidth: "100%", width: "700px", height: 450 }}
           cols={1}
-        
         >
           {productDetails.image.map((item: any) => (
             <ImageListItem key={item}>
@@ -312,7 +309,10 @@ export const ViewCard = (products: any) => {
             sx={{ color: "black" }}
             onClick={(e) => {
               e.preventDefault();
-              window.open("https://wa.me/0770097964", "_blank");
+              window.open(
+                "https://api.whatsapp.com/message/UTNR4S6WHTKUI1?autoload=1&app_absent=0",
+                "_blank"
+              );
             }}
           >
             Contact

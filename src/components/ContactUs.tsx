@@ -92,7 +92,7 @@ const ContactUs = () => {
             />
           </IconButton>
 
-          <IconButton sx={{ color: "white" }} href="https://wa.me/0770097964">
+          <IconButton sx={{ color: "white" }} href="https://api.whatsapp.com/message/UTNR4S6WHTKUI1?autoload=1&app_absent=0">
             <WhatsAppIcon
               sx={{
                 width: "50px",
